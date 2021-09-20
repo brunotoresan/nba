@@ -1,0 +1,7 @@
+/__pycache__
+/app/__pycache__
+/nba_env
+
+# misc
+.DS_Store
+*.pem
