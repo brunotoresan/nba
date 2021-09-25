@@ -13,8 +13,7 @@ TO-DO
 * Crie o **virtual environment** dentro do diretório do repositório<br>
 `$ python3 -m venv nba_env`<br>
 
-* Instalando as dependências<br>
-  Repetir esse processo a cada vez que um novo pacote for instalado<br>
+* Instalando as dependências (Repetir esse processo a cada vez que um novo pacote for instalado)<br>
 `$ pip install -r requirements.txt`
 
 * Ativando o **virtual environment**<br>
