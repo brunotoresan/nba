@@ -1,6 +1,7 @@
 /__pycache__
 /app/__pycache__
 /nba_env
+/migrations
 
 # misc
 .DS_Store
