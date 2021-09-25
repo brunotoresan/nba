@@ -17,7 +17,7 @@ TO-DO
 `$ pip install -r requirements.txt`
 
 * Ativando o **virtual environment**<br>
-`$/usr/local/opt/postgres/bin/createuser -s postgres` (necessário rodar 1x ***se*** utiliza MacOS + HomeBrew)<br>
+`$/usr/local/opt/postgres/bin/createuser -s postgres` (***apenas se*** utiliza MacOS + HomeBrew)<br>
 `$ source nba_env/bin/activate` (MacOS e Linux) ou <br>
 `$ nba_env\Scripts\activate` (Windows)<br>
 
