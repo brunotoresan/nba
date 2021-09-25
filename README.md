@@ -14,7 +14,7 @@ TO-DO
 `$ python3 -m venv nba_env`<br>
 
 * Instalando as dependências (repetir esses 2 passos a cada vez que um novo pacote for instalado)<br>
-`$/usr/local/opt/postgres/bin/createuser -s postgres` (***apenas se*** utiliza MacOS + HomeBrew)<br>
+`$ /usr/local/opt/postgres/bin/createuser -s postgres` (***apenas se*** utiliza MacOS + HomeBrew)<br>
 `$ pip install -r requirements.txt`
 
 * Ativando o **virtual environment**<br>
