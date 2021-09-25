@@ -17,10 +17,12 @@ TO-DO
 `$ pip install -r requirements.txt`
 
 * Ativando o **virtual environment**<br>
+`$/usr/local/opt/postgres/bin/createuser -s postgres` (necessário rodar 1x ***se*** utiliza MacOS + HomeBrew)<br>
 `$ source nba_env/bin/activate` (MacOS e Linux) ou <br>
 `$ nba_env\Scripts\activate` (Windows)<br>
 
 * Inicie o servidor do PostgreSQL<br>
+`$pg_ctl -D /usr/local/var/postgres start` (MacOS + HomeBrew)<br>
   
 * Crie um banco de dados chamado **nba** no seu PostgreSQL Client favorito (eu uso o Postbird)<br>
   
