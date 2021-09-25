@@ -14,11 +14,11 @@ TO-DO
 `$ python3 -m venv nba_env`<br>
 
 * Instalando as dependências (repetir esses 2 passos a cada vez que um novo pacote for instalado)<br>
+`$/usr/local/opt/postgres/bin/createuser -s postgres` (***apenas se*** utiliza MacOS + HomeBrew)<br>
 `$ pip install -r requirements.txt`
 
 * Ativando o **virtual environment**<br>
-`$/usr/local/opt/postgres/bin/createuser -s postgres` (***apenas se*** utiliza MacOS + HomeBrew)<br>
-`$ source nba_env/bin/activate` (MacOS e Linux) ou <br>
+`$ source nba_env/bin/activate` (MacOS e Linux) **ou** <br>
 `$ nba_env\Scripts\activate` (Windows)<br>
 
 * Inicie o servidor do PostgreSQL<br>
