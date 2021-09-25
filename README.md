@@ -11,14 +11,25 @@ TO-DO
 
 ## 💻 Como executar
 * Crie o **virtual environment** dentro do diretório do repositório<br>
-`$ python3 -m venv nba_env` (apenas uma vez, na instalação)<br>
+`$ python3 -m venv nba_env`<br>
+
+* Instalando as dependências<br>
+  Repetir esse processo a cada vez que um novo pacote for instalado<br>
+`$ pip install -r requirements.txt`
 
 * Ativando o **virtual environment**<br>
 `$ source nba_env/bin/activate` (MacOS e Linux) ou <br>
 `$ nba_env\Scripts\activate` (Windows)<br>
 
-* Instalando as dependências<br>
-`$ pip install -r requirements.txt`
+* Inicie o servidor do PostgreSQL<br>
+  
+* Crie um banco de dados chamado NBA no seu PostgreSQL Client favorito (eu uso o Postbird)<br>
+  
+* Crie o script de migração do banco de dados:<br>
+`$ flask db migrate`
+
+* Atualize o banco de dados:<br>
+`$ flask db upgrade`
 
 * Rodando o back-end<br>
 `flask run`
