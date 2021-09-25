@@ -6,7 +6,7 @@
   <a href="#-como-executar">Como executar</a>
 </p>
 
-## 🔥 Sobre o projeto
+## 🏀 Sobre o projeto
 TO-DO
 
 ## 💻 Como executar
