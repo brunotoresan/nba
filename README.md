@@ -27,6 +27,9 @@ TO-DO
 `$ pg_ctl -D /usr/local/var/postgres start` (MacOS + HomeBrew)<br>
   
 * Crie um banco de dados chamado **nba** no seu PostgreSQL Client favorito (eu uso o Postbird)<br>
+
+* Inicie o processo de migração do banco de dados:<br>
+`$ flask db init`
   
 * Crie o script de migração do banco de dados:<br>
 `$ flask db migrate`

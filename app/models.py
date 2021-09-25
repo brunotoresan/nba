@@ -1,11 +1,8 @@
 from app import db
 
-
 class TeamMatches(db.Model):    
-    id = db.Column(db.Integer, nullable=False, primary_key=True)
+    match_id = db.Column(db.String(), nullable=False, primary_key=True)
     team = db.Column(db.String(), nullable=False)
-    match = db.Column(db.String(), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
     won = db.Column(db.Boolean, nullable=False)
     points = db.Column(db.Integer, nullable=False)
     fgm = db.Column(db.Integer, nullable=False)
@@ -31,10 +28,9 @@ class TeamMatches(db.Model):
 
 class PlayersMatches(db.Model):    
     id = db.Column(db.Integer, primary_key=True)
-    player = db.Column(db.String(), db.ForeignKey('players_info.player'), nullable=False)
+    player = db.Column(db.String(), db.ForeignKey('players_shooting.player'), nullable=False)
     team = db.Column(db.String(), nullable=False)
-    match = db.Column(db.Integer, db.ForeignKey('team_matches.id'), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    match_id = db.Column(db.String(), db.ForeignKey('team_matches.match_id'), nullable=False)
     won = db.Column(db.Boolean, nullable=False)
     points = db.Column(db.Integer, nullable=False)
     fgm = db.Column(db.Integer, nullable=False)
