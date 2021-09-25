@@ -3,7 +3,8 @@
 <p align="center">
   <p align="center">Projeto NBA - Projeto de Banco de Dados - Projeto de Ciência de Dados</p>
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-instalar">Como instalar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-instalar">Como instalar</a><a href="#-como-executar">Como executar</a>
+  <a href="#-como-executar">Como executar</a><a href="#-como-executar">Como executar</a>
   <a href="#-como-executar">Como executar</a>
 </p>
 
@@ -36,3 +37,6 @@ TO-DO
 ## 💻 Como executar
 * Rodando o back-end<br>
 `$ flask run`
+
+## 🧑‍🏫 Recursos interessantes
+* [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
