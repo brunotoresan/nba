@@ -3,23 +3,24 @@
 <p align="center">
   <p align="center">Projeto NBA - Projeto de Banco de Dados - Projeto de Ciência de Dados</p>
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-instalar">Como instalar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-executar">Como executar</a>
 </p>
 
 ## 🏀 Sobre o projeto
 TO-DO
 
-## 💻 Como executar
+## 🤓 Como instalar
 * Crie o **virtual environment** dentro do diretório do repositório<br>
 `$ python3 -m venv nba_env`<br>
-
-* Instalando as dependências (repetir esses 2 passos a cada vez que um novo pacote for instalado)<br>
-`$ /usr/local/opt/postgres/bin/createuser -s postgres` (***apenas se*** utiliza MacOS + HomeBrew)<br>
-`$ pip install -r requirements.txt`
 
 * Ativando o **virtual environment**<br>
 `$ source nba_env/bin/activate` (MacOS e Linux) **ou** <br>
 `$ nba_env\Scripts\activate` (Windows)<br>
+
+* Instalando as dependências (repetir esses 2 passos a cada vez que um novo pacote for instalado)<br>
+`$ /usr/local/opt/postgres/bin/createuser -s postgres` (***apenas se*** utiliza MacOS + HomeBrew)<br>
+`$ pip install -r requirements.txt`
 
 * Inicie o servidor do PostgreSQL<br>
 `$ pg_ctl -D /usr/local/var/postgres start` (MacOS + HomeBrew)<br>
@@ -32,5 +33,6 @@ TO-DO
 * Atualize o banco de dados:<br>
 `$ flask db upgrade`
 
+## 💻 Como executar
 * Rodando o back-end<br>
 `$ flask run`
