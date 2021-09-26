@@ -29,13 +29,16 @@ TO-DO
 * Crie um banco de dados chamado **nba** no seu PostgreSQL Client favorito (eu uso o Postbird)<br>
 
 * Inicie o processo de migração do banco de dados:<br>
-`$ flask db init` (apenas uma vez)
+`$ flask db init`
   
 * Crie o script de migração do banco de dados:<br>
 `$ flask db migrate`
 
 * Atualize o banco de dados:<br>
 `$ flask db upgrade`
+
+* Rode o script que insere os dados no banco:<br>
+`$ python insert.py`
 
 ## 💻 Como executar
 * Rodando o back-end<br>
