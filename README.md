@@ -41,8 +41,18 @@ TO-DO
 `$ python insert.py`
 
 ## 💻 Como executar
-* Rodando o back-end<br>
+* Inicializar o app do flask<br>
+`$ python3`
+`>>> from app import create_app`
+`>>> app = create_app()`
+`>>> app.app_context().push()`
+`>>> quit()`
+
+* Rodar o back-end<br>
 `$ flask run`
+
+* Query da API: Nome do jogador mais alto:<br>
+`http://localhost:5000/api/tallest`
 
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
