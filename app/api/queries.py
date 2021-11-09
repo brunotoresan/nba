@@ -5,4 +5,4 @@ from app.models import PlayersInfo
 
 @bp.route('/tallest', methods=['GET'])
 def get_tallest_players():
-    return (PlayersInfo.query.order_by(PlayersInfo.height).limit(1).all()[-1].player)
+    return (PlayersInfo.query.order_by(PlayersInfo.height).all()[-1].player)
