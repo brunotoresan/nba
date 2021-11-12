@@ -46,7 +46,14 @@ TO-DO
 
 ## 🎯 Consultas disponibilizadas por endpoints
 * Nome do jogador mais alto: `http://localhost:5000/api/tallest`
-* Jogadores com mais pontos na temporada: `http://localhost:5000/api/playersMostPoints?num=X` (num=X define o nº de jogadores a mostrar)
+* Jogadores que mais pontuaram: `http://localhost:5000/api/playersMostPoints?num=100` (num=100 define o nº de jogadores a mostrar)
+* Times que mais pontuaram: `http://localhost:5000/api/teamsMostPoints`
+* Jogadores com mais assistências: `http://localhost:5000/api/playersMostAssists?num=100` (num=100 define o nº de jogadores a mostrar)
+* Times com mais assistências: `http://localhost:5000/api/teamsMostAssists`
+* Jogadores com melhor aproveitamento em lances livres: `http://localhost:5000/api/playersBestFreeThrow?num=100&minFTA=10` (num=100 define o nº de jogadores a mostrar e minFTA=10 define o número minimo de lances livres de um jogador)
+* Times com mais arremessos de 3 pontos: `http://localhost:5000/api/teamsMost3Points`
+* Times com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/teamsBest3Points`
+* Jogadores com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/playersBest3Points?num=100&minTPA=10` (num=100 define o nº de jogadores a mostrar e minTPA=10 define o número minimo de arremessos de 3 pontos de um jogador)
 
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
