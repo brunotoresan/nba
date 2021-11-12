@@ -46,6 +46,7 @@ TO-DO
 
 ## 🎯 Consultas disponibilizadas por endpoints
 * Nome do jogador mais alto: `http://localhost:5000/api/tallest`
+* Jogadores com mais pontos na temporada: `http://localhost:5000/api/playersMostPoints?num=X` (num=X define o nº de jogadores a mostrar)
 
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
