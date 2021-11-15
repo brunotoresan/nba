@@ -186,3 +186,79 @@ def get_players_best_3_points():
             "n3PointsScored": result[3]
         })
     return json.dumps(response)
+
+@bp.route('/teamsMostRebounds', methods=['GET'])
+def get_teams_most_rebounds():
+    args = request.args
+    num = args['num']
+    results = db.engine.execute(f"""
+        SELECT team, SUM(reb) AS totalRebounds
+        FROM team_matches
+        GROUP BY team
+        ORDER BY totalRebounds DESC
+        LIMIT {num}
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "totalRebounds": result[1] 
+        })
+    return json.dumps(response)
+
+@bp.route('/teamsMostBlocks', methods=['GET'])
+def get_teams_most_blocks():
+    args = request.args
+    num = args['num']
+    results = db.engine.execute(f"""
+        SELECT team, SUM(blk) AS totalBlocks
+        FROM team_matches
+        GROUP BY team
+        ORDER BY totalBlocks DESC
+        LIMIT {num}
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "totalBlocks": result[1] 
+        })
+    return json.dumps(response)
+
+@bp.route('/playersMostBlocks', methods=['GET'])
+def get_players_most_blocks():
+    args = request.args
+    num = args['num']
+    results = db.engine.execute(f"""
+        SELECT player, SUM(blk) AS totalBlocks
+        FROM players_matches
+        GROUP BY player
+        ORDER BY totalBlocks DESC
+        LIMIT {num}
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "player": result[0],
+            "totalBlocks": result[1] 
+        })
+    return json.dumps(response)
+
+@bp.route('/teamsWinHome', methods=['GET'])
+def get_teams_wins_home():
+    results = db.engine.execute(f"""
+        SELECT team, COUNT(case when won then 1 else null end) AS totalHomeWins, COUNT(case when NOT won then 1 else null end) AS totalHomeLosses
+        FROM team_matches
+        WHERE match_id LIKE CONCAT(team, \' vs.%%\')
+        GROUP BY team
+        ORDER BY totalHomeWins DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "totalHomeWins": result[1],
+            "totalHomeLosses": result[2]
+        })
+    return json.dumps(response)
+

@@ -54,6 +54,10 @@ TO-DO
 * Times com mais arremessos de 3 pontos: `http://localhost:5000/api/teamsMost3Points`
 * Times com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/teamsBest3Points`
 * Jogadores com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/playersBest3Points?num=100&minTPA=10` (num=100 define o nº de jogadores a mostrar e minTPA=10 define o número minimo de arremessos de 3 pontos de um jogador)
+* Times com maior número de rebotes: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de times a mostrar)
+* Times com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de times a mostrar)
+* Jogadores com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de jogadores a mostrar)
+* Número de vitórias em casa por time: `http://localhost:5000/api/teamsWinHome`
 
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
