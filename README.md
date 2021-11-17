@@ -58,6 +58,7 @@ TO-DO
 * Times com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de times a mostrar)
 * Jogadores com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de jogadores a mostrar)
 * Número de vitórias em casa por time: `http://localhost:5000/api/teamsWinHome`
-
+* Lista de jogadores com estatística maior que a média, com booleano indicando se são mais altos que a média
+ `http://localhost:5000/api/playersShootingTallerThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)

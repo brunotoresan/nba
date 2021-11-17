@@ -262,3 +262,24 @@ def get_teams_wins_home():
         })
     return json.dumps(response)
 
+@bp.route('/playersShootingTallerThanAvg', methods=['GET'])
+def  players_shooting_taller_than_avg():
+    args = request.args
+    shootingStat = args['shootingStat']
+    results = db.engine.execute(f"""
+        SELECT players_shooting.player, height, (height > (SELECT AVG(height) FROM players_info)) as isTallerThanAvg
+        FROM players_shooting
+        INNER JOIN players_info
+        ON players_shooting.player = players_info.player
+        WHERE {shootingStat} > (SELECT AVG({shootingStat}) FROM players_shooting)
+        ORDER BY {shootingStat} DESC
+""")
+    response = []
+    for result in results:
+        response.append({
+            "player": result[0],
+            "height": result[1],
+            "isTallerThanAvg": result[2]
+        })
+    return json.dumps(response)
+
