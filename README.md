@@ -60,5 +60,7 @@ TO-DO
 * Número de vitórias em casa por time: `http://localhost:5000/api/teamsWinHome`
 * Lista de jogadores com estatística maior que a média, com booleano indicando se são mais altos que a média
  `http://localhost:5000/api/playersShootingTallerThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
+ * Lista de times e os seus aproveitamentos para lances em uma zona específica da quadra: 
+ `http://localhost:5000/api/teamsBestShooting?shootingZone=itp` (shootingZone=itp define a zona da quadra na qual os lances foram feitos)
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)

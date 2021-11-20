@@ -283,3 +283,22 @@ def  players_shooting_taller_than_avg():
         })
     return json.dumps(response)
 
+@bp.route('/teamsBestShooting', methods=['GET'])
+def get_teams_best_shooting():
+    args = request.args
+    shootingZone = args['shootingZone']
+    results = db.engine.execute(f"""
+        SELECT team, CAST(to_char(SUM({shootingZone}_fgm) * 100.0/NULLIF(SUM({shootingZone}_fga), 0), 'FM999999999.00') AS FLOAT) AS shootingTypePercent, CAST(to_char(SUM({shootingZone}_fga), 'FM999999999.00') AS FLOAT) AS shootingTypeAttempted, CAST(to_char(SUM({shootingZone}_fgm), 'FM999999999.00') AS FLOAT) AS shootingTypeScored
+        FROM players_shooting
+        GROUP BY team
+        ORDER BY shootingTypePercent DESC, shootingTypeScored DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "shootingTypePercent": result[1],
+            "shootingTypeAttempted": result[2],
+            "shootingTypeScored": result[3]
+        })
+    return json.dumps(response)
