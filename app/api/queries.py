@@ -302,3 +302,38 @@ def get_teams_best_shooting():
             "shootingTypeScored": result[3]
         })
     return json.dumps(response)
+
+@bp.route('/playersMVP', methods=['GET'])
+def get_players_mvp():
+    results = db.engine.execute(f"""
+        SELECT team, player, (rar_fgm + itp_fgm + mrg_fgm + lc3_fgm + rc3_fgm + cn3_fgm + ab3_fgm) as totalShotsMade
+        FROM players_shooting
+        GROUP BY team, player
+        ORDER BY totalShotsMade DESC
+        LIMIT 10
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "player": result[1],
+            "totalShotsMade": result[2]
+        })
+    return json.dumps(response)
+
+@bp.route('/teamsWithMVP', methods=['GET'])
+def get_teams_mvp():
+    results = db.engine.execute(f"""
+        SELECT team, SUM(case when won then 1 else null end) as numberOfWins
+        FROM team_matches
+        WHERE team IN (SELECT team FROM players_shooting ORDER BY (rar_fgm + itp_fgm + mrg_fgm + lc3_fgm + rc3_fgm + cn3_fgm + ab3_fgm) DESC LIMIT 10)
+        GROUP BY team
+        ORDER BY numberOfWins DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "numberOfWins": result[1]
+        })
+    return json.dumps(response)
