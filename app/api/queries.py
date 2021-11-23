@@ -424,6 +424,8 @@ def get_teams_win_moves():
         })
     return json.dumps(response)
 
+# JOGADORES COM MAIOR PORCENTAGEM DE 3 PONTOS
+
 @bp.route('/playersBest3PointsPercentage', methods=['GET'])
 def get_players_best_3_points_percentage():
     args = request.args
