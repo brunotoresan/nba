@@ -60,8 +60,12 @@ TO-DO
 * Número de vitórias em casa por time: `http://localhost:5000/api/teamsWinHome`
 * Lista de jogadores com estatística maior que a média, com booleano indicando se são mais altos que a média
  `http://localhost:5000/api/playersShootingTallerThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
+ * Lista de jogadores com estatística maior que a média, com booleano indicando se são mais pesados que a média
+ `http://localhost:5000/api/playersShootingHeavierThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
  * Lista de times e os seus aproveitamentos para lances em uma zona específica da quadra: 
  `http://localhost:5000/api/teamsBestShooting?shootingZone=itp` (shootingZone=itp define a zona da quadra na qual os lances foram feitos)
+ * Lista de jogadores e os seus aproveitamentos para lances em uma zona específica da quadra: 
+ `http://localhost:5000/api/playersBestShooting?shootingZone=itp&minShots=1&num=50` (shootingZone=itp define a zona da quadra na qual os lances foram feitos, minShots=1 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de times a mostrar)
  * Lista de jogadores MVP (10 jogadores com a maior soma de acertos de lances): `http://localhost:5000/api/teamsWithMVP`
  * Lista de times com jogadores MVP (10 jogadores com a maior soma de acertos de lances) Junto com o número de vitórias do time: 
  `http://localhost:5000/api/teamsWithMVP`

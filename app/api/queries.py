@@ -283,6 +283,27 @@ def  players_shooting_taller_than_avg():
         })
     return json.dumps(response)
 
+@bp.route('/playersShootingHeavierThanAvg', methods=['GET'])
+def  players_shooting_heavier_than_avg():
+    args = request.args
+    shootingStat = args['shootingStat']
+    results = db.engine.execute(f"""
+        SELECT players_shooting.player, weight, (weight > (SELECT AVG(weight) FROM players_info)) as isHeavierThanAvg
+        FROM players_shooting
+        INNER JOIN players_info
+        ON players_shooting.player = players_info.player
+        WHERE {shootingStat} > (SELECT AVG({shootingStat}) FROM players_shooting)
+        ORDER BY {shootingStat} DESC
+""")
+    response = []
+    for result in results:
+        response.append({
+            "player": result[0],
+            "height": result[1],
+            "isHeavierThanAvg": result[2]
+        })
+    return json.dumps(response)
+
 @bp.route('/teamsBestShooting', methods=['GET'])
 def get_teams_best_shooting():
     args = request.args
@@ -297,6 +318,30 @@ def get_teams_best_shooting():
     for result in results:
         response.append({
             "team": result[0],
+            "shootingTypePercent": result[1],
+            "shootingTypeAttempted": result[2],
+            "shootingTypeScored": result[3]
+        })
+    return json.dumps(response)
+
+@bp.route('/playersBestShooting', methods=['GET'])
+def get_players_best_shooting():
+    args = request.args
+    shootingZone = args['shootingZone']
+    minShots = args['minShots']
+    num = args['num']
+    results = db.engine.execute(f"""
+        SELECT player, CAST(to_char(SUM({shootingZone}_fgm) * 100.0/NULLIF(SUM({shootingZone}_fga), 0), 'FM999999999.00') AS FLOAT) AS shootingTypePercent, CAST(to_char(SUM({shootingZone}_fga), 'FM999999999.00') AS FLOAT) AS shootingTypeAttempted, CAST(to_char(SUM({shootingZone}_fgm), 'FM999999999.00') AS FLOAT) AS shootingTypeScored
+        FROM players_shooting
+        GROUP BY player
+        HAVING CAST(to_char(SUM({shootingZone}_fga), 'FM999999999.00') AS FLOAT) > 0 AND CAST(to_char(SUM({shootingZone}_fga), 'FM999999999.00') AS FLOAT) >= {minShots}
+        ORDER BY shootingTypePercent DESC, shootingTypeScored DESC
+        LIMIT {num}
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "player": result[0],
             "shootingTypePercent": result[1],
             "shootingTypeAttempted": result[2],
             "shootingTypeScored": result[3]
