@@ -67,7 +67,10 @@ TO-DO
  * Lista de jogadores e os seus aproveitamentos para lances em uma zona específica da quadra: 
  `http://localhost:5000/api/playersBestShooting?shootingZone=itp&minShots=1&num=50` (shootingZone=itp define a zona da quadra na qual os lances foram feitos, minShots=1 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de times a mostrar)
  * Lista de jogadores MVP (10 jogadores com a maior soma de acertos de lances): `http://localhost:5000/api/teamsWithMVP`
- * Lista de times com jogadores MVP (10 jogadores com a maior soma de acertos de lances) Junto com o número de vitórias do time: 
+ * Lista de times com jogadores MVP (10 jogadores com a maior soma de acertos de lances) junto com o número de vitórias do time: 
  `http://localhost:5000/api/teamsWithMVP`
+  * Lista de times com seu aproveitamento em uma dada jogada e seu número de vitórias na temporada: `http://localhost:5000/api/teamsWinMoves?move=blk` (onde move=blk é a jogada)
+  * Lista de jogadores pela porcentagem de pontos marcados com arremessos de 3 pontos: `http://localhost:5000/api/playersBest3PointsPercentage?minPoints=100&num=50` (onde minPoints=100 define o nº mínimo de pontos marcados pelo jogador e num=50 define o nº de times a mostrar)
+
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)

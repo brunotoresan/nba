@@ -187,6 +187,8 @@ def get_players_best_3_points():
         })
     return json.dumps(response)
 
+# JOGADORES COM MAIS REBOTES
+
 @bp.route('/teamsMostRebounds', methods=['GET'])
 def get_teams_most_rebounds():
     args = request.args
@@ -205,6 +207,8 @@ def get_teams_most_rebounds():
             "totalRebounds": result[1] 
         })
     return json.dumps(response)
+
+# TIMES COM MAIS BLOQUEIOS
 
 @bp.route('/teamsMostBlocks', methods=['GET'])
 def get_teams_most_blocks():
@@ -225,6 +229,8 @@ def get_teams_most_blocks():
         })
     return json.dumps(response)
 
+# JOGADORES COM MAIS BLOQUEIOS
+
 @bp.route('/playersMostBlocks', methods=['GET'])
 def get_players_most_blocks():
     args = request.args
@@ -244,6 +250,8 @@ def get_players_most_blocks():
         })
     return json.dumps(response)
 
+# TIMES QUE MAIS VENCEM EM CASA
+
 @bp.route('/teamsWinHome', methods=['GET'])
 def get_teams_wins_home():
     results = db.engine.execute(f"""
@@ -261,6 +269,8 @@ def get_teams_wins_home():
             "totalHomeLosses": result[2]
         })
     return json.dumps(response)
+
+# ARREMESSOS DE JOGADORES MAIS ALTOS QUE A MÊDIA
 
 @bp.route('/playersShootingTallerThanAvg', methods=['GET'])
 def  players_shooting_taller_than_avg():
@@ -283,6 +293,8 @@ def  players_shooting_taller_than_avg():
         })
     return json.dumps(response)
 
+# ARREMESSOS DE JOGADORES MAIS PESADOS QUE A MÊDIA
+
 @bp.route('/playersShootingHeavierThanAvg', methods=['GET'])
 def  players_shooting_heavier_than_avg():
     args = request.args
@@ -304,6 +316,8 @@ def  players_shooting_heavier_than_avg():
         })
     return json.dumps(response)
 
+# TIMES COM MELHOR APROVEITAMENTO EM UM TIPO DE ARREMESSO
+
 @bp.route('/teamsBestShooting', methods=['GET'])
 def get_teams_best_shooting():
     args = request.args
@@ -323,6 +337,8 @@ def get_teams_best_shooting():
             "shootingTypeScored": result[3]
         })
     return json.dumps(response)
+
+# JOGADORES COM MELHOR APROVEITAMENTO EM UM TIPO DE ARREMESSO
 
 @bp.route('/playersBestShooting', methods=['GET'])
 def get_players_best_shooting():
@@ -348,6 +364,8 @@ def get_players_best_shooting():
         })
     return json.dumps(response)
 
+# JOGADORES COM MAIS ACERTOS EM ARREMESSOS
+
 @bp.route('/playersMVP', methods=['GET'])
 def get_players_mvp():
     results = db.engine.execute(f"""
@@ -366,6 +384,8 @@ def get_players_mvp():
         })
     return json.dumps(response)
 
+# VITÓRIAS DE TIMES COM JOGADORES COM MAIS ACERTOS EM ARREMESSOS
+
 @bp.route('/teamsWithMVP', methods=['GET'])
 def get_teams_mvp():
     results = db.engine.execute(f"""
@@ -380,5 +400,50 @@ def get_teams_mvp():
         response.append({
             "team": result[0],
             "numberOfWins": result[1]
+        })
+    return json.dumps(response)
+
+# VITÓRIAS DE TIMES COM MELHOR APROVEITAMENTO EM UMA JOGADA
+
+@bp.route('/teamsWinMoves', methods=['GET'])
+def get_teams_win_moves():
+    args = request.args
+    move = args['move']
+    results = db.engine.execute(f"""
+        SELECT team, CAST(ROUND(AVG({move}), 2) AS FLOAT) AS total_{move}, SUM(case when won then 1 else null end) as numberOfWins
+        FROM team_matches
+        GROUP BY team
+        ORDER BY total_{move} DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            f'total_{move}': result[1],
+            "numberOfWins": result[2]
+        })
+    return json.dumps(response)
+
+@bp.route('/playersBest3PointsPercentage', methods=['GET'])
+def get_players_best_3_points_percentage():
+    args = request.args
+    minPoints = args['minPoints']
+    num = args['num']
+    results = db.engine.execute(f"""
+        SELECT player, team, CAST(to_char(SUM(tpm) * 3 * 100.0/NULLIF(SUM(points), 0), 'FM999999999.00') AS FLOAT) AS threePointsPerc, SUM(points) AS totalPoints, SUM(tpm)*3 AS total3Points
+        FROM players_matches
+        GROUP BY player, team
+        HAVING SUM(points) >= 3 AND SUM(points) >= {minPoints}
+        ORDER BY threePointsPerc DESC
+        LIMIT {num}
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "player": result[0],
+            "team": result[1],
+            "threePointsPerc": result[2],
+            "totalPoints": result[3],
+            "total3Points": result[4]
         })
     return json.dumps(response)
