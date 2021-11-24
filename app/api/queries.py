@@ -491,7 +491,7 @@ def getPlayerRanking(playerShotPercentage, quartiles):
     return playerRanking
 
 
-@bp.route('/teste', methods=['GET'])
+@bp.route('/shotPercentage', methods=['GET'])
 def getShotPercentageAndQuartilesPerCourtArea():
     args = request.args
     courtArea = args['courtArea']
