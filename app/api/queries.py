@@ -2,6 +2,7 @@ from flask import current_app, request
 from app import db
 from app.api import bp
 from app.models import PlayersInfo
+import numpy as np 
 import json
 
 # JOGADORES + ALTOS
@@ -449,3 +450,60 @@ def get_players_best_3_points_percentage():
             "total3Points": result[4]
         })
     return json.dumps(response)
+
+
+def getPlayerShotPercentage(courtArea, player):
+    playerShotPercentageFromDatabase = db.engine.execute(f"""
+        SELECT {courtArea}
+        FROM players_shooting
+        WHERE player = '{player}'
+    """)
+    for shotPercentage in playerShotPercentageFromDatabase:
+        playerShotPercentage = shotPercentage[0]
+    return playerShotPercentage
+
+
+def getQuartiles(courtArea, player):
+    percentagesFromTheDatabase = db.engine.execute(f"""
+        SELECT {courtArea}
+        FROM players_shooting
+    """)
+    allPlayersPercentage = []
+    for percentage in percentagesFromTheDatabase:
+        allPlayersPercentage.append(percentage[0])
+    quartiles = []
+    quartiles.append(np.quantile(allPlayersPercentage, .25))
+    quartiles.append(np.quantile(allPlayersPercentage, .50))
+    quartiles.append(np.quantile(allPlayersPercentage, .75))
+    return quartiles
+
+
+def getPlayerRanking(playerShotPercentage, quartiles):
+    playerRanking = -1
+    if (playerShotPercentage > quartiles[2]):
+        playerRanking = 1
+    elif (playerShotPercentage > quartiles[1]):
+        playerRanking = 2
+    elif (playerShotPercentage > quartiles[0]):
+        playerRanking = 3
+    else:
+        playerRanking = 4
+    return playerRanking
+
+
+@bp.route('/teste', methods=['GET'])
+def getShotPercentageAndQuartilesPerCourtArea():
+    args = request.args
+    courtArea = args['courtArea']
+    player = args['player']
+    playerShotPercentage = getPlayerShotPercentage(courtArea, player)
+    quartiles = getQuartiles(courtArea, player)
+    playerRanking = getPlayerRanking(playerShotPercentage, quartiles)
+    return json.dumps({
+        "player": player,
+        "shotPercentage": playerShotPercentage,
+        "playerRanking": playerRanking,
+        "q1": quartiles[0], 
+        "q2": quartiles[1], 
+        "q3": quartiles[2],
+    })
