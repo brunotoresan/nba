@@ -126,7 +126,7 @@ def insert_players_shooting():
         for row in csvreader:
             player = row[0]
             team = row[1]
-            fgp = float(row[2])
+            age = float(row[2])
             rar_fgm = float(row[3])
             rar_fga = float(row[4])
             rar_fgp = float(row[5])
@@ -151,7 +151,7 @@ def insert_players_shooting():
             players_shooting = PlayersShooting(
                 player=player,
                 team=team,
-                fgp=fgp,
+                age=age,
                 rar_fgm=rar_fgm,
                 rar_fga=rar_fga,
                 rar_fgp=rar_fgp,

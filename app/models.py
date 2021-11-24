@@ -59,7 +59,7 @@ class PlayersMatches(db.Model):
 class PlayersShooting(db.Model):    
     player = db.Column(db.String(), primary_key=True)
     team = db.Column(db.String(), nullable=False)
-    fgp = db.Column(db.Float, nullable=False)
+    age = db.Column(db.Float, nullable=False)
     rar_fgm = db.Column(db.Float, nullable=False)
     rar_fga = db.Column(db.Float, nullable=False)
     rar_fgp = db.Column(db.Float, nullable=False)
