@@ -72,7 +72,7 @@ TO-DO
   * Lista de times com seu aproveitamento em uma dada jogada e seu número de vitórias na temporada: `http://localhost:5000/api/teamsWinMoves?move=blk` (move=blk é a jogada)
   * Lista de jogadores pela porcentagem de pontos marcados com arremessos de 3 pontos: `http://localhost:5000/api/playersBest3PointsPercentage?minPoints=100&num=50` (minPoints=100 define o nº mínimo de pontos marcados pelo jogador e num=50 define o nº de times a mostrar)
   * Lista de jogadores ordenados pela média de pontos por partida: `http://localhost:5000/api/playersAveragePoints?num=50` (num=50 define o nº de times a mostrar)
-  * Lista de times ordenados pela média de idade com a porcentagem de vitórias: `http://localhost:5000/api/teamsAgeWins`
+  * Lista de times ordenados pela média de idade com a porcentagem de vitórias nos jogos: `http://localhost:5000/api/teamsAgeWins`
   * Lista de jogadores ordenados pelo aproveitamento em lances em uma zona específica da quadra junto com sua porcentagem de vitórias nos jogos: 
  `http://localhost:5000/api/playersShootingWins?shootingZone=ab3&minShots=1&num=50` (shootingZone=ab3 define a zona da quadra na qual os lances foram feitos, minShots=3 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de jogadores a mostrar)
 
