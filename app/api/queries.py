@@ -451,6 +451,84 @@ def get_players_best_3_points_percentage():
         })
     return json.dumps(response)
 
+# MÉDIA DE PONTOS DOS JOGADORES POR PARTIDA
+
+@bp.route('/playersAveragePoints', methods=['GET'])
+def get_players_average_points():
+    args = request.args
+    num = args['num']
+    results = db.engine.execute(f"""
+        SELECT player, team, CAST(ROUND(CAST(AVG(points) AS NUMERIC), 2) AS FLOAT) AS averagePoints
+        FROM players_matches
+        GROUP BY player, team
+        ORDER BY AVG(points) DESC
+        LIMIT {num}
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "player": result[0],
+            "team": result[1],
+            "averagePoints": result[2]
+        })
+    return json.dumps(response)
+
+# MÉDIA DE IDADE DOS TIMES E SUA PORCENTAGEM DE VITÓRIAS
+
+@bp.route('/teamsAgeWins', methods=['GET'])
+def get_teams_age_wins():
+    results = db.engine.execute("""
+        SELECT tm.team, ps.playerAge as averageAge, COUNT(tm.won) as nMatches, COUNT(case when tm.won then 1 else null end) as nWins, CAST(ROUND(CAST(COUNT(case when tm.won then 1 else null end) AS NUMERIC)/CAST(COUNT(tm.won) AS NUMERIC)*100.0, 2) AS FLOAT) AS percentWins
+        FROM team_matches tm
+        INNER JOIN 
+            (SELECT team, CAST(ROUND(CAST(AVG(age) AS NUMERIC), 2) AS FLOAT) as playerAge FROM players_shooting GROUP BY team) ps 
+            ON tm.team = ps.team     		
+        GROUP BY tm.team, ps.playerAge
+        ORDER BY ps.playerAge DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "averageAge": result[1],
+            "nMatches": result[2],
+            "nWins": result[3],
+            "percentWins": result[4]
+        })
+    return json.dumps(response)
+
+# PORCENTAGEM DE VITÓRIAS DE JOGADORES ESPECIALIZADOS EM UM ARREMESSO
+
+@bp.route('/playersShootingWins', methods=['GET'])
+def  get_players_shooting_wins():
+    args = request.args
+    shootingZone = args['shootingZone']
+    minShots = args['minShots']
+    num = args['num']
+    results = db.engine.execute(f"""
+        SELECT ps.player, ps.team, ps.{shootingZone}_fgp as percentShotsMade, pm.numberOfMatches as nMatches, pm.numberOfWins as nWins, CAST(ROUND(CAST(pm.numberOfWins AS NUMERIC)/CAST(pm.numberOfMatches AS NUMERIC)*100.0, 2) AS FLOAT) AS percentWins
+        FROM players_shooting ps
+        INNER JOIN 
+            (SELECT player, COUNT(won) as numberOfMatches, COUNT(case when won then 1 else null end) as numberOfWins FROM players_matches GROUP BY player) pm
+            ON ps.player = pm.player  
+        WHERE ps.{shootingZone}_fga > {minShots}
+        GROUP BY ps.player, pm.numberOfMatches, pm.numberOfWins
+        ORDER BY percentShotsMade DESC
+        LIMIT {num}
+""")
+    response = []
+    for result in results:
+        response.append({
+            "player": result[0],
+            "team": result[1],
+            "percentShotsMade": result[2],
+            "nMatches": result[3],
+            "nWins": result[4],
+            "percentWins": result[5]
+        })
+    return json.dumps(response)
+
+# PORCENTAGEM DE CADA TIPO DE ARREMESSO DIVIDIDOS EM QUARTILES
 
 def getPlayerShotPercentage(courtArea, player):
     playerShotPercentageFromDatabase = db.engine.execute(f"""
