@@ -478,17 +478,17 @@ def getQuartiles(courtArea, player):
     return quartiles
 
 
-def getPlayerRanking(playerShotPercentage, quartiles):
-    playerRanking = -1
+def getHeatmapIntensity(playerShotPercentage, quartiles):
+    heatmapIntensity = -1
     if (playerShotPercentage > quartiles[2]):
-        playerRanking = 1
+        heatmapIntensity = 7.5
     elif (playerShotPercentage > quartiles[1]):
-        playerRanking = 2
+        heatmapIntensity = 4.5
     elif (playerShotPercentage > quartiles[0]):
-        playerRanking = 3
+        heatmapIntensity = 2.5
     else:
-        playerRanking = 4
-    return playerRanking
+        heatmapIntensity = 0
+    return heatmapIntensity
 
 
 @bp.route('/shotPercentage', methods=['GET'])
@@ -498,11 +498,11 @@ def getShotPercentageAndQuartilesPerCourtArea():
     player = args['player']
     playerShotPercentage = getPlayerShotPercentage(courtArea, player)
     quartiles = getQuartiles(courtArea, player)
-    playerRanking = getPlayerRanking(playerShotPercentage, quartiles)
+    heatmapIntensity = getHeatmapIntensity(playerShotPercentage, quartiles)
     return json.dumps({
         "player": player,
         "shotPercentage": playerShotPercentage,
-        "playerRanking": playerRanking,
+        "heatmapIntensity": heatmapIntensity,
         "q1": quartiles[0], 
         "q2": quartiles[1], 
         "q3": quartiles[2],
