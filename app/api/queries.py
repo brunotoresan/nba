@@ -565,7 +565,7 @@ def getPercentiles(courtArea, player):
 
 def getHeatmapIntensity(playerShotPercentage, percentiles):
     heatmapIntensity = -1
-    elif (playerShotPercentage >= percentiles[9]):
+    if (playerShotPercentage >= percentiles[9]):
         heatmapIntensity = 8.3
     elif (playerShotPercentage >= percentiles[8]):
         heatmapIntensity = 7.50
