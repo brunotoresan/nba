@@ -550,16 +550,16 @@ def getPercentiles(courtArea, player):
     for percentage in percentagesFromTheDatabase:
         allPlayersPercentage.append(percentage[0])
     percentiles = []
-    percentiles.append(round(np.percentile(allPlayersPercentage, 10)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 20)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 30)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 40)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 50)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 60)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 70)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 80)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 90)), 2)
-    percentiles.append(round(np.percentile(allPlayersPercentage, 100)), 2)
+    percentiles.append(round(np.percentile(allPlayersPercentage, 10), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 20), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 30), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 40), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 50), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 60), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 70), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 80), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 90), 2))
+    percentiles.append(round(np.percentile(allPlayersPercentage, 100), 2))
     return percentiles
 
 
