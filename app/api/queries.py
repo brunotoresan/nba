@@ -541,7 +541,7 @@ def getPlayerShotPercentage(courtArea, player):
     return playerShotPercentage
 
 
-def getQuartiles(courtArea, player):
+def getPercentiles(courtArea, player):
     percentagesFromTheDatabase = db.engine.execute(f"""
         SELECT {courtArea}
         FROM players_shooting
@@ -549,21 +549,42 @@ def getQuartiles(courtArea, player):
     allPlayersPercentage = []
     for percentage in percentagesFromTheDatabase:
         allPlayersPercentage.append(percentage[0])
-    quartiles = []
-    quartiles.append(np.quantile(allPlayersPercentage, .25))
-    quartiles.append(np.quantile(allPlayersPercentage, .50))
-    quartiles.append(np.quantile(allPlayersPercentage, .75))
-    return quartiles
+    percentiles = []
+    percentiles.append(np.percentile(allPlayersPercentage, 10))
+    percentiles.append(np.percentile(allPlayersPercentage, 20))
+    percentiles.append(np.percentile(allPlayersPercentage, 30))
+    percentiles.append(np.percentile(allPlayersPercentage, 40))
+    percentiles.append(np.percentile(allPlayersPercentage, 50))
+    percentiles.append(np.percentile(allPlayersPercentage, 60))
+    percentiles.append(np.percentile(allPlayersPercentage, 70))
+    percentiles.append(np.percentile(allPlayersPercentage, 80))
+    percentiles.append(np.percentile(allPlayersPercentage, 90))
+    percentiles.append(np.percentile(allPlayersPercentage, 100))
+    return percentiles
 
 
-def getHeatmapIntensity(playerShotPercentage, quartiles):
+def getHeatmapIntensity(playerShotPercentage, percentiles):
     heatmapIntensity = -1
-    if (playerShotPercentage > quartiles[2]):
-        heatmapIntensity = 7.5
-    elif (playerShotPercentage > quartiles[1]):
-        heatmapIntensity = 4.5
-    elif (playerShotPercentage > quartiles[0]):
+    elif (playerShotPercentage >= percentiles[9]):
+        heatmapIntensity = 8.3
+    elif (playerShotPercentage >= percentiles[8]):
+        heatmapIntensity = 7.50
+    elif (playerShotPercentage >= percentiles[7]):
+        heatmapIntensity = 6.7
+    elif (playerShotPercentage >= percentiles[6]):
+        heatmapIntensity = 5.8 
+    elif (playerShotPercentage >= percentiles[5]):
+        heatmapIntensity = 5.0
+    elif (playerShotPercentage >= percentiles[4]):
+        heatmapIntensity = 4.2 
+    elif (playerShotPercentage >= percentiles[3]):
+        heatmapIntensity = 3.3
+    elif (playerShotPercentage >= percentiles[2]):
         heatmapIntensity = 2.5
+    elif (playerShotPercentage >= percentiles[1]):
+        heatmapIntensity = 1.7
+    elif (playerShotPercentage >= percentiles[0]):
+        heatmapIntensity = 0.8
     else:
         heatmapIntensity = 0
     return heatmapIntensity
@@ -575,13 +596,11 @@ def getShotPercentageAndQuartilesPerCourtArea():
     courtArea = args['courtArea']
     player = args['player']
     playerShotPercentage = getPlayerShotPercentage(courtArea, player)
-    quartiles = getQuartiles(courtArea, player)
-    heatmapIntensity = getHeatmapIntensity(playerShotPercentage, quartiles)
+    percentiles = getPercentiles(courtArea, player)
+    heatmapIntensity = getHeatmapIntensity(playerShotPercentage, percentiles)
     return json.dumps({
         "player": player,
         "shotPercentage": playerShotPercentage,
         "heatmapIntensity": heatmapIntensity,
-        "q1": quartiles[0], 
-        "q2": quartiles[1], 
-        "q3": quartiles[2],
+        "percentiles": percentiles
     })
