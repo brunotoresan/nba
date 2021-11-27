@@ -605,3 +605,21 @@ def getShotPercentageAndQuartilesPerCourtArea():
         "heatmapIntensity": heatmapIntensity,
         "percentiles": percentiles
     })
+
+@bp.route('/teamsBestDefense', methods=['GET'])
+def get_teams_best_defence():
+    results = db.engine.execute(f"""
+        SELECT team1.team, SUM(opposing_team.fga - opposing_team.fgm) AS fieldGoalsNotTaken
+        FROM team_matches team1
+        JOIN team_matches opposing_team
+        ON SUBSTRING(opposing_team.match_id ,LENGTH(opposing_team.match_id)-16 , LENGTH(opposing_team.match_id)) = CONCAT(team1.team ,\' in \',SUBSTRING(team1.match_id ,LENGTH(team1.match_id)-9 , LENGTH(team1.match_id))) 
+        GROUP BY team1.team
+        ORDER BY fieldGoalsNotTaken DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team1.team": result[0],
+            "fieldGoalsNotTaken": result[1]
+        })
+    return json.dumps(response)

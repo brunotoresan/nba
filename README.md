@@ -75,6 +75,7 @@ TO-DO
   * Lista de times ordenados pela média de idade com a porcentagem de vitórias nos jogos: `http://localhost:5000/api/teamsAgeWins`
   * Lista de jogadores ordenados pelo aproveitamento em arremessos em uma zona específica da quadra junto com sua porcentagem de vitórias nos jogos: 
  `http://localhost:5000/api/playersShootingWins?shootingZone=ab3&minShots=1&num=50` (shootingZone=ab3 define a zona da quadra na qual os lances foram feitos, minShots=3 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de jogadores a mostrar)
+  * Lista das melhores defesas `http://localhost:5000/api/teamsBestDefense`
 
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
