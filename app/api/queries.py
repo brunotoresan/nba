@@ -24,22 +24,23 @@ def get_tallest_players():
 
 # JOGADORES QUE + PONTUAM
 
-@bp.route('/playersMostPoints', methods=['GET'])
-def get_players_most_points():
+@bp.route('/playersStatsFromTeam', methods=['GET'])
+def get_players_stats_from_team():
     args = request.args
-    num = args['num']
+    team = args['team']
+    stat = args['stat']
     results = db.engine.execute(f"""
-        SELECT player, SUM(points) AS totalPoints
+        SELECT player, SUM({stat}) AS total
         FROM players_matches
+        WHERE team='{team}'
         GROUP BY player
-        ORDER BY totalPoints DESC
-        LIMIT {num}
+        ORDER BY total DESC
     """)
     response = []
     for result in results:
         response.append({
-            "player": result[0],
-            "totalPoints": result[1] 
+            "x": result[0], # player
+            "y": result[1]  # points
         })
     return json.dumps(response)
 
