@@ -709,11 +709,14 @@ def get_teams_wins_losses():
 
 # TIMES E ACERTOS/ERROS EM CADA TIPO DE ARREMESSO
 
-@bp.route('/teamsShotsMadeAndMissed', methods=['GET'])
-def get_teams_shots_made_and_missed():
+@bp.route('/teamShotsMadeAndMissed', methods=['GET'])
+def get_team_shots_made_and_missed():
+    args = request.args
+    team = args['team']
     results = db.engine.execute(f"""
         SELECT team, SUM(ftm) AS freeThrowsMade, SUM(fta-ftm) AS freeThrowsMissed, SUM(tpm) AS threePointsMade, SUM(tpa-tpm) AS threePointsMissed, SUM(fgm-tpm) AS fieldGoalsMade, SUM((fga-fgm)-(tpa-tpm)) AS fieldGoalsMissed
         FROM team_matches
+        WHERE team = '{team}'
         GROUP BY team
         ORDER BY team
     """)

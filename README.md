@@ -81,7 +81,7 @@ TO-DO
 * Time e seu nº de pontos feitos na temporada: `http://localhost:5000/api/teamPointsScored?team=WAS` (team=WAS é a sigla do time)
 * Time e seu nº de pontos levados na temporada: `http://localhost:5000/api/teamPointsTaken?team=WAS` (team=WAS é a sigla do time)
 * Lista de times pelo nº de vitórias e derrotas na temporada: `http://localhost:5000/api/teamsWinsLosses`
-* Lista de times e seus acertos e erros em 3 tipos de arremesso (free throws, 3 points e field goals): `http://localhost:5000/api/teamsShotsMadeAndMissed`
+* Lista de times e seus acertos e erros em 3 tipos de arremesso (free throws, 3 points e field goals): `http://localhost:5000/api/teamShotsMadeAndMissed?team=WAS` (team=WAS é a sigla do time)
 
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
