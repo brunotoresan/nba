@@ -313,7 +313,7 @@ def  players_shooting_heavier_than_avg():
     for result in results:
         response.append({
             "player": result[0],
-            "height": result[1],
+            "weight": result[1],
             "isHeavierThanAvg": result[2]
         })
     return json.dumps(response)
