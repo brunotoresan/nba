@@ -45,18 +45,18 @@ O objetivo geral do projeto é extrair, identificar, inferir e visualizar inform
 `$ flask run`
 
 ## 🎯 Consultas disponibilizadas por endpoints
-`x` * Nome do jogador mais alto: `http://localhost:5000/api/tallest`
-`x` * Jogadores que mais pontuaram: `http://localhost:5000/api/playersMostPoints?num=100` (num=100 define o nº de jogadores a mostrar)
-`x` * Times que mais pontuaram: `http://localhost:5000/api/teamsMostPoints`
-`x` * Jogadores com mais assistências: `http://localhost:5000/api/playersMostAssists?num=100` (num=100 define o nº de jogadores a mostrar)
-`x` * Times com mais assistências: `http://localhost:5000/api/teamsMostAssists`
-`x` * Jogadores com melhor aproveitamento em lances livres: `http://localhost:5000/api/playersBestFreeThrow?num=100&minFTA=10` (num=100 define o nº de jogadores a mostrar e minFTA=10 define o número minimo de lances livres de um jogador)
-`x` * Times com mais arremessos de 3 pontos: `http://localhost:5000/api/teamsMost3Points`
-`x` * Times com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/teamsBest3Points`
-`x` * Jogadores com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/playersBest3Points?num=100&minTPA=10` (num=100 define o nº de jogadores a mostrar e minTPA=10 define o número minimo de arremessos de 3 pontos de um jogador)
-`x` * Times com maior número de rebotes: `http://localhost:5000/api/playersMostRebounds?num=10` (num=10 define o nº de times a mostrar)
-`x` * Times com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de times a mostrar)
-`x` * Jogadores com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de jogadores a mostrar)
+* Nome do jogador mais alto: `http://localhost:5000/api/tallest`
+* Jogadores que mais pontuaram: `http://localhost:5000/api/playersMostPoints?num=100` (num=100 define o nº de jogadores a mostrar)
+* Times que mais pontuaram: `http://localhost:5000/api/teamsMostPoints`
+* Jogadores com mais assistências: `http://localhost:5000/api/playersMostAssists?num=100` (num=100 define o nº de jogadores a mostrar)
+* Times com mais assistências: `http://localhost:5000/api/teamsMostAssists`
+* Jogadores com melhor aproveitamento em lances livres: `http://localhost:5000/api/playersBestFreeThrow?num=100&minFTA=10` (num=100 define o nº de jogadores a mostrar e minFTA=10 define o número minimo de lances livres de um jogador)
+* Times com mais arremessos de 3 pontos: `http://localhost:5000/api/teamsMost3Points`
+* Times com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/teamsBest3Points`
+* Jogadores com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/playersBest3Points?num=100&minTPA=10` (num=100 define o nº de jogadores a mostrar e minTPA=10 define o número minimo de arremessos de 3 pontos de um jogador)
+* Times com maior número de rebotes: `http://localhost:5000/api/playersMostRebounds?num=10` (num=10 define o nº de times a mostrar)
+* Times com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de times a mostrar)
+* Jogadores com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de jogadores a mostrar)
 * Número de vitórias em casa por time: `http://localhost:5000/api/teamsWinHome`
 * Lista de jogadores com estatística maior que a média, com booleano indicando se são mais altos que a média
 `http://localhost:5000/api/playersShootingTallerThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
@@ -70,7 +70,7 @@ O objetivo geral do projeto é extrair, identificar, inferir e visualizar inform
 * Lista de times com jogadores MVP (10 jogadores com a maior soma de acertos de lances) junto com o número de vitórias do time: 
 `http://localhost:5000/api/teamsWithMVP`
 * Lista de times com seu aproveitamento em uma dada jogada e seu número de vitórias na temporada: `http://localhost:5000/api/teamsWinMoves?move=blk` (move=blk é a jogada)
-`x` * Lista de jogadores pela porcentagem de pontos marcados com arremessos de 3 pontos: `http://localhost:5000/api/playersBest3PointsPercentage?minPoints=100&num=50` (minPoints=100 define o nº mínimo de pontos marcados pelo jogador e num=50 define o nº de times a mostrar)
+* Lista de jogadores pela porcentagem de pontos marcados com arremessos de 3 pontos: `http://localhost:5000/api/playersBest3PointsPercentage?minPoints=100&num=50` (minPoints=100 define o nº mínimo de pontos marcados pelo jogador e num=50 define o nº de times a mostrar)
 * Lista de jogadores ordenados pela média de pontos por partida: `http://localhost:5000/api/playersAveragePoints?num=50` (num=50 define o nº de times a mostrar)
 * Lista de times ordenados pela média de idade com a porcentagem de vitórias nos jogos: `http://localhost:5000/api/teamsAgeWins`
 * Lista de jogadores ordenados pelo aproveitamento em arremessos em uma zona específica da quadra junto com sua porcentagem de vitórias nos jogos: 
