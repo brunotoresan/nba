@@ -46,7 +46,7 @@ O objetivo geral do projeto é extrair, identificar, inferir e visualizar inform
 
 ## 🎯 Consultas disponibilizadas por endpoints
 * Nome do jogador mais alto: `http://localhost:5000/api/tallest`
-* Jogadores que mais pontuaram: `http://localhost:5000/api/playersStatsFromTeam?team=WAS&stat=tpm` (team=WAS define o time e stat=tpm define a estatística do tipo de lance)
+* Jogadores de um time com melhor desempenho em um lance: `http://localhost:5000/api/playersStatsFromTeam?team=WAS&stat=tpm` (team=WAS define o time e stat=tpm define a estatística do tipo de lance)
 * Times que mais pontuaram: `http://localhost:5000/api/teamsMostPoints`
 * Jogadores com mais assistências: `http://localhost:5000/api/playersMostAssists?num=100` (num=100 define o nº de jogadores a mostrar)
 * Times com mais assistências: `http://localhost:5000/api/teamsMostAssists`
