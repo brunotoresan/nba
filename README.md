@@ -3,7 +3,7 @@
 <p align="center">
   <p align="center">Projeto NBA - Projeto de Banco de Dados - Projeto de Ciência de Dados</p>
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-instalar">Como instalar</a><a href="#-como-executar">Como executar</a>
+  <a href="#-como-instalar">Como instalar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-recursos-interessantes">Recursos interessantes</a>
 </p>
