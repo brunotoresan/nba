@@ -725,10 +725,10 @@ def get_team_shots_made_and_missed():
         response.append({
             "team": result[0],
             "freeThrowsMade": result[1],
-            "freeThrowsissed": result[2],
+            "freeThrowsMissed": result[2],
             "threePointsMade": result[3],
             "threePointsMissed": result[4],
-            "fieldGoalsMade": result[5],
-            "fieldGoalsMissed": result[6], 
+            "twoPointsMade": result[5],
+            "twoPointsMissed": result[6], 
         })
     return json.dumps(response)
