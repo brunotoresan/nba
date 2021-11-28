@@ -606,11 +606,53 @@ def getShotPercentageAndQuartilesPerCourtArea():
         "percentiles": percentiles
     })
 
-# Nº DE VITÓRIAS E DERROTAS DOS TIMES
+# Nº DE VITÓRIAS DO TIME
+
+@bp.route('/teamWins', methods=['GET'])
+def get_team_wins():
+    args = request.args
+    team = args['team']
+    results = db.engine.execute(f"""
+        SELECT team, COUNT(case when won then 1 else null end) AS totalWins
+        FROM team_matches
+        WHERE team = '{team}'
+        GROUP BY team
+        ORDER BY totalWins DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "totalWins": result[1] 
+        })
+    return json.dumps(response)
+
+# Nº DE PONTOS DO TIME
+
+@bp.route('/teamPoints', methods=['GET'])
+def get_team_points():
+    args = request.args
+    team = args['team']
+    results = db.engine.execute(f"""
+        SELECT team, SUM(points) AS totalPoints
+        FROM team_matches
+        WHERE team = '{team}'
+        GROUP BY team
+        ORDER BY totalPoints DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "totalPoints": result[1] 
+        })
+    return json.dumps(response)
+
+# Nº DE VITÓRIAS E DERROTAS DO TIME
 
 @bp.route('/teamsWinsLosses', methods=['GET'])
 def get_teams_wins_losses():
-    results = db.engine.execute("""
+    results = db.engine.execute(f"""
         SELECT team, COUNT(case when won then 1 else null end) AS totalWins, COUNT(case when NOT won then 1 else null end) AS totalLosses
         FROM team_matches
         GROUP BY team
@@ -625,29 +667,11 @@ def get_teams_wins_losses():
         })
     return json.dumps(response)
 
-# Nº DE PONTOS DOS TIMES
-
-@bp.route('/teamsPoints', methods=['GET'])
-def get_teams_points():
-    results = db.engine.execute("""
-        SELECT team, SUM(points) AS totalPoints
-        FROM team_matches
-        GROUP BY team
-        ORDER BY totalPoints DESC
-    """)
-    response = []
-    for result in results:
-        response .append({
-            "team": result[0],
-            "totalPoints": result[1] 
-        })
-    return json.dumps(response)
-
 # TIMES E ACERTOS/ERROS EM CADA TIPO DE ARREMESSO
 
 @bp.route('/teamsShotsMadeAndMissed', methods=['GET'])
 def get_teams_shots_made_and_missed():
-    results = db.engine.execute("""
+    results = db.engine.execute(f"""
         SELECT team, SUM(ftm) AS freeThrowsMade, SUM(fta-ftm) AS freeThrowsMissed, SUM(tpm) AS threePointsMade, SUM(tpa-tpm) AS threePointsMissed, SUM(fgm-tpm) AS fieldGoalsMade, SUM((fga-fgm)-(tpa-tpm)) AS fieldGoalsMissed
         FROM team_matches
         GROUP BY team
@@ -655,7 +679,7 @@ def get_teams_shots_made_and_missed():
     """)
     response = []
     for result in results:
-        response .append({
+        response.append({
             "team": result[0],
             "freeThrowsMade": result[1],
             "freeThrowsissed": result[2],
