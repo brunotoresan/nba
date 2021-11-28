@@ -54,9 +54,9 @@ O objetivo geral do projeto é extrair, identificar, inferir e visualizar inform
 `x` * Times com mais arremessos de 3 pontos: `http://localhost:5000/api/teamsMost3Points`
 `x` * Times com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/teamsBest3Points`
 `x` * Jogadores com melhor aproveitamento em arremessos de 3 pontos: `http://localhost:5000/api/playersBest3Points?num=100&minTPA=10` (num=100 define o nº de jogadores a mostrar e minTPA=10 define o número minimo de arremessos de 3 pontos de um jogador)
-* Times com maior número de rebotes: `http://localhost:5000/api/playersMostRebounds?num=10` (num=10 define o nº de times a mostrar)
-* Times com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de times a mostrar)
-* Jogadores com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de jogadores a mostrar)
+`x` * Times com maior número de rebotes: `http://localhost:5000/api/playersMostRebounds?num=10` (num=10 define o nº de times a mostrar)
+`x` * Times com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de times a mostrar)
+`x` * Jogadores com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de jogadores a mostrar)
 * Número de vitórias em casa por time: `http://localhost:5000/api/teamsWinHome`
 * Lista de jogadores com estatística maior que a média, com booleano indicando se são mais altos que a média
 `http://localhost:5000/api/playersShootingTallerThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
@@ -66,7 +66,7 @@ O objetivo geral do projeto é extrair, identificar, inferir e visualizar inform
 `http://localhost:5000/api/teamsBestShooting?shootingZone=itp` (shootingZone=itp define a zona da quadra na qual os lances foram feitos)
 * Lista de jogadores e os seus aproveitamentos para lances em uma zona específica da quadra: 
 `http://localhost:5000/api/playersBestShooting?shootingZone=itp&minShots=1&num=50` (shootingZone=itp define a zona da quadra na qual os lances foram feitos, minShots=1 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de jogadores a mostrar)
-* Lista de jogadores MVP (10 jogadores com a maior soma de acertos de lances): `http://localhost:5000/api/teamsWithMVP`
+* Lista de jogadores MVP (10 jogadores com a maior soma de acertos de lances): `http://localhost:5000/api/playersMVP`
 * Lista de times com jogadores MVP (10 jogadores com a maior soma de acertos de lances) junto com o número de vitórias do time: 
 `http://localhost:5000/api/teamsWithMVP`
 * Lista de times com seu aproveitamento em uma dada jogada e seu número de vitórias na temporada: `http://localhost:5000/api/teamsWinMoves?move=blk` (move=blk é a jogada)
