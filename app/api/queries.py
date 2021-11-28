@@ -313,7 +313,7 @@ def  players_shooting_heavier_than_avg():
     for result in results:
         response.append({
             "player": result[0],
-            "height": result[1],
+            "weight": result[1],
             "isHeavierThanAvg": result[2]
         })
     return json.dumps(response)
@@ -685,6 +685,35 @@ def get_team_points_taken():
         response.append({
             "team": result[0],
             "totalPointsTaken": result[1] 
+        })
+    return json.dumps(response)
+
+# Nº DE PONTOS QUE O TIME FEZ E LEVOU POR JOGO
+
+@bp.route('/teamPointsMadeAndTakenPerGame', methods=['GET'])
+def get_team_points_made_and_taken_per_game():
+    args = request.args
+    team = args['team']
+    results = db.engine.execute(f"""
+        SELECT pointsScored.points, pointsTaken.points 
+        FROM (
+            SELECT match_id, points
+            FROM team_matches
+            WHERE team = '{team}'
+        ) AS pointsScored
+        JOIN (
+            SELECT match_id, points
+            FROM team_matches
+            WHERE (match_id LIKE '%%vs. {team}%%' OR match_id LIKE '%%@ {team}%%')
+        ) AS pointsTaken
+        ON RIGHT(pointsScored.match_id, 10) = RIGHT(pointsTaken.match_id, 10)
+        WHERE pointsScored.match_id LIKE '%%{team}%%' AND pointsTaken.match_id LIKE '%%{team}%%'
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "pointsMade": result[0],
+            "pointsTaken": result[1] 
         })
     return json.dumps(response)
 
