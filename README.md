@@ -9,7 +9,7 @@
 </p>
 
 ## 🏀 Sobre o projeto
-TO-DO
+O objetivo geral do projeto é extrair, identificar, inferir e visualizar informações relevantes sobre jogadores, times, pontuações, lances e arremessos da temporada regular de 2020-21 da NBA (liga americana de basquete). Mais especificamente, pretende-se encontrar padrões e tendências relacionadas a vários aspectos do esporte, como características comuns dos times e jogadores mais vitoriosos, o aproveitamento de times e jogadores nos vários tipos de lance e arremesso, entre outros. Foram implementadas consultas envolvendo diversos aspectos do jogo e uma visualização web que inclui heatmaps, gráficos e tabelas. A principal contribuição do projeto é revelar fatos importantes sobre a evolução de times e jogadores da NBA que podem ser úteis no treinamento de jogadores e na formação de novas estratégias que levem um time à vitória.
 
 ## 🤓 Como instalar
 * Crie o **virtual environment** dentro do diretório do repositório<br>
