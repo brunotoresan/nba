@@ -688,6 +688,35 @@ def get_team_points_taken():
         })
     return json.dumps(response)
 
+# Nº DE PONTOS QUE O TIME FEZ E LEVOU POR JOGO
+
+@bp.route('/teamPointsMadeAndTakenPerGame', methods=['GET'])
+def get_team_points_made_and_taken_per_game():
+    args = request.args
+    team = args['team']
+    results = db.engine.execute(f"""
+        SELECT pointsScored.points, pointsTaken.points 
+        FROM (
+            SELECT match_id, points
+            FROM team_matches
+            WHERE team = '{team}'
+        ) AS pointsScored
+        JOIN (
+            SELECT match_id, points
+            FROM team_matches
+            WHERE (match_id LIKE '%%vs. {team}%%' OR match_id LIKE '%%@ {team}%%')
+        ) AS pointsTaken
+        ON RIGHT(pointsScored.match_id, 10) = RIGHT(pointsTaken.match_id, 10)
+        WHERE pointsScored.match_id LIKE '%%{team}%%' AND pointsTaken.match_id LIKE '%%{team}%%'
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "pointsMade": result[0],
+            "pointsTaken": result[1] 
+        })
+    return json.dumps(response)
+
 # Nº DE VITÓRIAS E DERROTAS DO TIME
 
 @bp.route('/teamsWinsLosses', methods=['GET'])

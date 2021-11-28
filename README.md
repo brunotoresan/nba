@@ -80,6 +80,7 @@ O objetivo geral do projeto é extrair, identificar, inferir e visualizar inform
 * Time e seu nº de vitórias na temporada: `http://localhost:5000/api/teamWins?team=WAS` (team=WAS é a sigla do time)
 * Time e seu nº de pontos feitos na temporada: `http://localhost:5000/api/teamPointsScored?team=WAS` (team=WAS é a sigla do time)
 * Time e seu nº de pontos levados na temporada: `http://localhost:5000/api/teamPointsTaken?team=WAS` (team=WAS é a sigla do time)
+* Time e seu nº de pontos feitos e levados por jogo na temporada: `http://localhost:5000/api/teamPointsMadeAndTakenPerGame?team=WAS` (team=WAS é a sigla do time)
 * Lista de times pelo nº de vitórias e derrotas na temporada: `http://localhost:5000/api/teamsWinsLosses`
 * Lista de times e seus acertos e erros em 3 tipos de arremesso (free throws, 3 points e field goals): `http://localhost:5000/api/teamShotsMadeAndMissed?team=WAS` (team=WAS é a sigla do time)
 
