@@ -590,7 +590,6 @@ def getHeatmapIntensity(playerShotPercentage, percentiles):
         heatmapIntensity = 0
     return heatmapIntensity
 
-
 @bp.route('/shotPercentage', methods=['GET'])
 def getShotPercentageAndQuartilesPerCourtArea():
     args = request.args
@@ -606,6 +605,26 @@ def getShotPercentageAndQuartilesPerCourtArea():
         "percentiles": percentiles
     })
 
+# TIMES COM MELHOR DEFESA
+
+@bp.route('/teamsBestDefense', methods=['GET'])
+def get_teams_best_defence():
+    results = db.engine.execute(f"""
+        SELECT team1.team, SUM(opposing_team.fga - opposing_team.fgm) AS fieldGoalsNotTaken
+        FROM team_matches team1
+        JOIN team_matches opposing_team
+        ON SUBSTRING(opposing_team.match_id ,LENGTH(opposing_team.match_id)-16 , LENGTH(opposing_team.match_id)) = CONCAT(team1.team ,\' in \',SUBSTRING(team1.match_id ,LENGTH(team1.match_id)-9 , LENGTH(team1.match_id))) 
+        GROUP BY team1.team
+        ORDER BY fieldGoalsNotTaken DESC
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team1.team": result[0],
+            "fieldGoalsNotTaken": result[1]
+        })
+    return json.dumps(response)
+
 # Nº DE VITÓRIAS DO TIME
 
 @bp.route('/teamWins', methods=['GET'])
@@ -617,7 +636,6 @@ def get_team_wins():
         FROM team_matches
         WHERE team = '{team}'
         GROUP BY team
-        ORDER BY totalWins DESC
     """)
     response = []
     for result in results:
@@ -627,10 +645,10 @@ def get_team_wins():
         })
     return json.dumps(response)
 
-# Nº DE PONTOS DO TIME
+# Nº DE PONTOS QUE O TIME FEZ NA TEMPORADA
 
-@bp.route('/teamPoints', methods=['GET'])
-def get_team_points():
+@bp.route('/teamPointsScored', methods=['GET'])
+def get_team_points_scored():
     args = request.args
     team = args['team']
     results = db.engine.execute(f"""
@@ -638,13 +656,35 @@ def get_team_points():
         FROM team_matches
         WHERE team = '{team}'
         GROUP BY team
-        ORDER BY totalPoints DESC
     """)
     response = []
     for result in results:
         response.append({
             "team": result[0],
-            "totalPoints": result[1] 
+            "totalPointsScored": result[1] 
+        })
+    return json.dumps(response)
+
+# Nº DE PONTOS QUE O TIME LEVOU NA TEMPORADA
+
+@bp.route('/teamPointsTaken', methods=['GET'])
+def get_team_points_taken():
+    args = request.args
+    team = args['team']
+    results = db.engine.execute(f"""
+        SELECT '{team}' as team, CAST(SUM(subquery.pointsTaken) AS INTEGER) AS totalPointsTaken
+        FROM (
+            SELECT team, SUM(points) AS pointsTaken
+            FROM team_matches
+            WHERE match_id LIKE '%%vs. {team}%%' OR match_id LIKE '%%@ {team}%%'
+            GROUP BY team
+        ) subquery
+    """)
+    response = []
+    for result in results:
+        response.append({
+            "team": result[0],
+            "totalPointsTaken": result[1] 
         })
     return json.dumps(response)
 
@@ -687,24 +727,5 @@ def get_teams_shots_made_and_missed():
             "threePointsMissed": result[4],
             "fieldGoalsMade": result[5],
             "fieldGoalsMissed": result[6], 
-        })
-    return json.dumps(response)
-
-
-@bp.route('/teamsBestDefense', methods=['GET'])
-def get_teams_best_defence():
-    results = db.engine.execute(f"""
-        SELECT team1.team, SUM(opposing_team.fga - opposing_team.fgm) AS fieldGoalsNotTaken
-        FROM team_matches team1
-        JOIN team_matches opposing_team
-        ON SUBSTRING(opposing_team.match_id ,LENGTH(opposing_team.match_id)-16 , LENGTH(opposing_team.match_id)) = CONCAT(team1.team ,\' in \',SUBSTRING(team1.match_id ,LENGTH(team1.match_id)-9 , LENGTH(team1.match_id))) 
-        GROUP BY team1.team
-        ORDER BY fieldGoalsNotTaken DESC
-    """)
-    response = []
-    for result in results:
-        response.append({
-            "team1.team": result[0],
-            "fieldGoalsNotTaken": result[1]
         })
     return json.dumps(response)

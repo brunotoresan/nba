@@ -59,27 +59,29 @@ TO-DO
 * Jogadores com maior número de bloqueios: `http://localhost:5000/api/playersMostBlocks?num=10` (num=10 define o nº de jogadores a mostrar)
 * Número de vitórias em casa por time: `http://localhost:5000/api/teamsWinHome`
 * Lista de jogadores com estatística maior que a média, com booleano indicando se são mais altos que a média
- `http://localhost:5000/api/playersShootingTallerThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
- * Lista de jogadores com estatística maior que a média, com booleano indicando se são mais pesados que a média
- `http://localhost:5000/api/playersShootingHeavierThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
- * Lista de times e os seus aproveitamentos para lances em uma zona específica da quadra: 
- `http://localhost:5000/api/teamsBestShooting?shootingZone=itp` (shootingZone=itp define a zona da quadra na qual os lances foram feitos)
- * Lista de jogadores e os seus aproveitamentos para lances em uma zona específica da quadra: 
- `http://localhost:5000/api/playersBestShooting?shootingZone=itp&minShots=1&num=50` (shootingZone=itp define a zona da quadra na qual os lances foram feitos, minShots=1 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de jogadores a mostrar)
- * Lista de jogadores MVP (10 jogadores com a maior soma de acertos de lances): `http://localhost:5000/api/teamsWithMVP`
- * Lista de times com jogadores MVP (10 jogadores com a maior soma de acertos de lances) junto com o número de vitórias do time: 
- `http://localhost:5000/api/teamsWithMVP`
-  * Lista de times com seu aproveitamento em uma dada jogada e seu número de vitórias na temporada: `http://localhost:5000/api/teamsWinMoves?move=blk` (move=blk é a jogada)
-  * Lista de jogadores pela porcentagem de pontos marcados com arremessos de 3 pontos: `http://localhost:5000/api/playersBest3PointsPercentage?minPoints=100&num=50` (minPoints=100 define o nº mínimo de pontos marcados pelo jogador e num=50 define o nº de times a mostrar)
-  * Lista de jogadores ordenados pela média de pontos por partida: `http://localhost:5000/api/playersAveragePoints?num=50` (num=50 define o nº de times a mostrar)
-  * Lista de times ordenados pela média de idade com a porcentagem de vitórias nos jogos: `http://localhost:5000/api/teamsAgeWins`
-  * Lista de jogadores ordenados pelo aproveitamento em arremessos em uma zona específica da quadra junto com sua porcentagem de vitórias nos jogos: 
- `http://localhost:5000/api/playersShootingWins?shootingZone=ab3&minShots=1&num=50` (shootingZone=ab3 define a zona da quadra na qual os lances foram feitos, minShots=3 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de jogadores a mostrar)
-  * Time e seu nº de vitórias na temporada: `http://localhost:5000/api/teamWins?team=WAS` (team=WAS é a sigla do time)
-  * Time e seu nº de pontos feitos na temporada: `http://localhost:5000/api/teamPoints?team=WAS` (team=WAS é a sigla do time)
-  * Lista de times pelo nº de vitórias e derrotas na temporada: `http://localhost:5000/api/teamsWinsLosses`
-  * Lista de times e seus acertos e erros em 3 tipos de arremesso (free throws, 3 points e field goals): `http://localhost:5000/api/teamsShotsMadeAndMissed`
-  * Lista das melhores defesas `http://localhost:5000/api/teamsBestDefense`
+`http://localhost:5000/api/playersShootingTallerThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
+* Lista de jogadores com estatística maior que a média, com booleano indicando se são mais pesados que a média
+`http://localhost:5000/api/playersShootingHeavierThanAvg?shootingStat=rar_fgm` (shootingStat=rar_fgm define a estatística a ser usada para filtrar os jogadores)
+* Lista de times e os seus aproveitamentos para lances em uma zona específica da quadra: 
+`http://localhost:5000/api/teamsBestShooting?shootingZone=itp` (shootingZone=itp define a zona da quadra na qual os lances foram feitos)
+* Lista de jogadores e os seus aproveitamentos para lances em uma zona específica da quadra: 
+`http://localhost:5000/api/playersBestShooting?shootingZone=itp&minShots=1&num=50` (shootingZone=itp define a zona da quadra na qual os lances foram feitos, minShots=1 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de jogadores a mostrar)
+* Lista de jogadores MVP (10 jogadores com a maior soma de acertos de lances): `http://localhost:5000/api/teamsWithMVP`
+* Lista de times com jogadores MVP (10 jogadores com a maior soma de acertos de lances) junto com o número de vitórias do time: 
+`http://localhost:5000/api/teamsWithMVP`
+* Lista de times com seu aproveitamento em uma dada jogada e seu número de vitórias na temporada: `http://localhost:5000/api/teamsWinMoves?move=blk` (move=blk é a jogada)
+* Lista de jogadores pela porcentagem de pontos marcados com arremessos de 3 pontos: `http://localhost:5000/api/playersBest3PointsPercentage?minPoints=100&num=50` (minPoints=100 define o nº mínimo de pontos marcados pelo jogador e num=50 define o nº de times a mostrar)
+* Lista de jogadores ordenados pela média de pontos por partida: `http://localhost:5000/api/playersAveragePoints?num=50` (num=50 define o nº de times a mostrar)
+* Lista de times ordenados pela média de idade com a porcentagem de vitórias nos jogos: `http://localhost:5000/api/teamsAgeWins`
+* Lista de jogadores ordenados pelo aproveitamento em arremessos em uma zona específica da quadra junto com sua porcentagem de vitórias nos jogos: 
+`http://localhost:5000/api/playersShootingWins?shootingZone=ab3&minShots=1&num=50` (shootingZone=ab3 define a zona da quadra na qual os lances foram feitos, minShots=3 define o nº decimal mínimo de arremessos por partida que o jogador fez na temporada e num=50 define o nº de jogadores a mostrar)
+* Jogador e sua porcentagem de acertos em determinada região da quadra em quartiles: `http://localhost:5000/api/shotPercentage?courtArea=ab3_fgm&player=Stephen%20Curry` (courtArea=ab3_fgm é a região da quadra e player=Stephen%20Curry é o jogador)
+* Lista dos times com as melhores defesas (menor nº de field goals tomado): `http://localhost:5000/api/teamsBestDefense`
+* Time e seu nº de vitórias na temporada: `http://localhost:5000/api/teamWins?team=WAS` (team=WAS é a sigla do time)
+* Time e seu nº de pontos feitos na temporada: `http://localhost:5000/api/teamPointsScored?team=WAS` (team=WAS é a sigla do time)
+* Time e seu nº de pontos levados na temporada: `http://localhost:5000/api/teamPointsTaken?team=WAS` (team=WAS é a sigla do time)
+* Lista de times pelo nº de vitórias e derrotas na temporada: `http://localhost:5000/api/teamsWinsLosses`
+* Lista de times e seus acertos e erros em 3 tipos de arremesso (free throws, 3 points e field goals): `http://localhost:5000/api/teamsShotsMadeAndMissed`
 
 ## 🧑‍🏫 Recursos interessantes
 * [Tutorial Flask + Banco de Dados](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
