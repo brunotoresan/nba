@@ -751,13 +751,10 @@ def get_team_shots_made_and_missed():
     """)
     response = []
     for result in results:
-        response.append({
+        return json.dumps({
             "team": result[0],
-            "freeThrowsMade": result[1],
-            "freeThrowsMissed": result[2],
-            "threePointsMade": result[3],
-            "threePointsMissed": result[4],
-            "twoPointsMade": result[5],
-            "twoPointsMissed": result[6], 
+            "freeThrowsPercentage": round((result[1] / (result[1] + result[2])) * 100, 2),
+            "twoPointsPercentage":  round((result[5] / (result[5] + result[6])) * 100, 2),
+            "threePointsPercentage":  round((result[3] / (result[3] + result[4])) * 100, 2),
+            "totalPercentage": round(((result[1] + result[3] + result[5]) / (result[1] + result[2] + result[3] + result[4] + result[5] + result[6])) * 100, 2)
         })
-    return json.dumps(response)
